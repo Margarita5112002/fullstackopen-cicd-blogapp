@@ -1,0 +1,32 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxMjMiLCJpZCI6IjY1N2I0MjNkNjYwZjMxMmRlNDI2NTdhOSIsImlhdCI6MTcwNjgyNTAzNCwiZXhwIjoxNzA2ODI4NjM0fQ.ZHIkiOoXtQ0AIeAe9zt6an1b61CT83bMNETJf8uUR3A
+
+{
+    "title": "A New Blog Title",
+    "author": "Rob",
+    "url": "www.blog-example.com",
+    "likes": 5
+}
+
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "Anothe blogpost",
+    "author": "Mag",
+    "url": "www.another-blog-example.com",
+    "likes": 100
+}
+
+### 
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "More blogging",
+    "author": "Abi",
+    "url": "www.blogging.com",
+    "likes": 403
+}
