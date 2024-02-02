@@ -1,4 +1,4 @@
 #!/bin/bash
 
-npm install:all
+npm run install:all
 npm run build:ui
