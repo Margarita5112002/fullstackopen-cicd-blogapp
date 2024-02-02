@@ -28,6 +28,9 @@ jobs:
                 SECRET: ${{ secrets.SECRET }}
               run: npm run test:all
             - name: e2e tests
+              env:
+                TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+                SECRET: ${{ secrets.SECRET }}
               uses: cypress-io/github-action@v5
               with:
                 command: npm run test:e2e
