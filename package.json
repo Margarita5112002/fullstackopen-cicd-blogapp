@@ -13,7 +13,7 @@
     "install:all": "npm install && cd ui && npm install",
     "lint:all": "npm run lint && cd ui && npm run lint",
     "test:all": "npm run test && cd ui && npm run test",
-    "test:e2e": "cd ui && cypress run"
+    "test:e2e": "npm --prefix ./ui run test:e2e"
   },
   "author": "Margarita",
   "license": "ISC",
