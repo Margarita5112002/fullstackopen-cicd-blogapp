@@ -1,0 +1,16 @@
+name: HealthCheck
+
+on:
+    schedule:
+        - cron: '0 16 * * 5'
+
+jobs:
+    health_check:
+        runs-on: ubuntu-20.04
+        steps:
+            - name: check the deployed URL
+              uses: jtalk/url-health-check-action@v4
+              with:
+                url: https://blogapp-cicd-3whk.onrender.com/health
+                max-attempts: 3
+                retry-delay: 20s

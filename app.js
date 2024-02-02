@@ -26,6 +26,10 @@ app.use(middleware.tokenExtractor)
 
 app.use(express.static('dist'))
 
+app.get('/health', (req, res) => {
+	res.status(200).send('ok')
+})
+
 app.use('/api/users', userRouter)
 app.use('/api/blogs', middleware.userExtractor, blogRouter)
 app.use('/api/login', loginRouter)
