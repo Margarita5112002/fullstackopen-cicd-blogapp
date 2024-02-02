@@ -1,0 +1,48 @@
+name: Deployment pipeline
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches: [main]
+        types: [opened, synchronize]
+
+jobs:
+    deployment_pipeline:
+        runs-on: ubuntu-20.04
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: '20'
+            - name: Install Dependencies
+              run: npm run install:all
+            - name: Check Style
+              run: npm run lint:all
+            - name: Build
+              run: npm run build:ui
+            - name: Test
+              run: npm run test:all
+            - name: e2e tests
+              uses: cypress-io/github-action@v5
+              with:
+                command: npm run test:e2e
+                start: npm run start:test
+                wait-on: http://localhost:3003
+            - name: trigger deployment
+              if: ${{!contains(github.event.head_commit.message, '#skip') && github.event_name == 'push'}}
+              run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
+
+    tag_release:
+        if: ${{!contains(github.event.head_commit.message, '#skip') && github.event_name == 'push'}}
+        needs: [deployment_pipeline]
+        runs-on: ubuntu-20.04
+        steps:
+            - uses: actions/checkout@v4
+            - name: Bump version and push tag
+              uses: anothrNick/github-tag-action@c360518fb8131e99795f8208f8a6105ceca55ec2
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                WITH_V: true
+                DEFAULT_BUMP: patch
