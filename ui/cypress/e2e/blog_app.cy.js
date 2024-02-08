@@ -97,7 +97,7 @@ describe('Blog app', function () {
 			it('can delete a blog if logged user created it', function(){
 				cy.contains('An existing blog').contains('View').click()
 				cy.contains('Delete').click()
-				cy.should('not.contain', 'An existing blog')
+				cy.contains('An existing blog').should('not.exist')
 			})
 
 			it('can not delete a blog if logged user did not created it', function(){
