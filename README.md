@@ -1,6 +1,6 @@
 # Full Stack Open CI/CD Bloglist
 
-This is a repository for exercise 20 - 21 of full stack open course. The rest of the exercise can be found here: 
+This is a repository for exercise 20 - 21 of full stack open course. The rest of the exercise can be found here: https://github.com/Margarita5112002/full-stack-open-pokedex
 
 ## Commands
 
